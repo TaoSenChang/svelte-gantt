@@ -61,6 +61,7 @@
     function onRowExpanded(event) {
         const row = event.detail.row;
         row.expanded = true;
+        row.model.expanded = true;
         if (row.children) show(row.children);
         updateYPositions();
     }
@@ -68,6 +69,7 @@
     function onRowCollapsed(event) {
         const row = event.detail.row;
         row.expanded = false;
+        row.model.expanded = false;
         if (row.children) hide(row.children);
         updateYPositions();
     }
@@ -85,7 +87,7 @@
         $taskStore.ids.forEach(id => {
             const task = $taskStore.entities[id];
             const row = $rowStore.entities[task.model.resourceId];
-            $taskStore.entities[id].top = row.y + $rowPadding;
+            if (row) $taskStore.entities[id].top = row.y + $rowPadding;
         });
     }
 
