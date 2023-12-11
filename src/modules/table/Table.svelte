@@ -95,6 +95,8 @@
         children.forEach(row => {
             if (row.children) hide(row.children);
             row.hidden = true;
+            row.expanded = false;
+            row.model.expanded = false;
         });
     }
 
